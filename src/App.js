@@ -1,29 +1,32 @@
 import "./App.css";
 import Post from "./Post";
 import { Route, Routes } from "react-router-dom";
+import { UserContextProvider } from "./UserContext";
 import Layout from "./Layout";
 import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import CreatePost from "./pages/CreatePost";
 
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
+    <UserContextProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
 
-        {/* Home Page */}
-        <Route index element={<IndexPage />} />
+          <Route index element={<IndexPage />} />
 
-        {/* Login Page */}
-        <Route path="/login" element={<LoginPage />}/>
+          <Route path="/login" element={<LoginPage />}/>
 
-        {/* Register Page */}
-        <Route path="/register" element={<RegisterPage />}/>
+          <Route path="/register" element={<RegisterPage />}/>
 
-      </Route>
+          <Route path="/create" element={<CreatePost />} />
 
-    </Routes>
+        </Route>
+      </Routes>
+    </UserContextProvider>
+    
   );
 }
 
