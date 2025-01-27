@@ -1,24 +1,25 @@
-export default function Post() {
+import {format} from "date-fns";
+import { Link } from "react-router-dom";
+
+export default function Post({_id, title, summary, cover, content, createdAt, author}) {
   return (
     <div className="post">
       <div className="image">
-        <img
-          src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_960_720.jpg"
-          alt=""
-        />
+        <Link to={`/post/${_id}`}>
+          <img src={'http://localhost:4000/'+cover} alt=""/>
+        </Link>
       </div>
+
       <div className="texts">
-        <h2>Keeping the Doctor Away</h2>
+        <Link to={`/post/${_id}`}>
+          <h2>{title}</h2>
+        </Link>
+
         <p className="info">
-          <a className="author"> Leo Jiang</a>
-          <time>2024-11-29 18:05</time>
+          <a className="author">{author.username}</a>
+          <time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time>
         </p>
-        <p className="summary">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat."
-        </p>
+        <p className="summary">{summary}</p>
       </div>
     </div>
   );
